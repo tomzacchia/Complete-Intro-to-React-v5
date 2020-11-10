@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SearchParams = () => {
-  const location = "Seattle, WA";
+  // [currentState, updater function state] = useState(defaultState)
+  // useState returns an array where arr[0] = state
+  const [location, setLocation] = useState("Seattle, WA");
+
+  // IMPORTANT: Order of hooks is important to functionality of hooks
+  // therefore do not place them in conditionals
 
   return (
     <div className="search-params">
@@ -14,6 +19,8 @@ const SearchParams = () => {
             id="location"
             value={location}
             placeholder="Location"
+            // typing triggers a re-render of SearchParams
+            onChange={(event) => setLocation(event.target.value)}
           />
         </label>
         <button> Submit </button>
