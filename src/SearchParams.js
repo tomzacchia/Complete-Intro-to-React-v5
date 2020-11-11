@@ -1,15 +1,31 @@
-import React, { useState } from "react";
-// parcel will automatically download dependencies that are missing
-// check package.json
-import { ANIMALS } from "@frontendmasters/pet";
+// useEffect takes place of: componentDidMOunt, ...wilMount, ...wilUpdate
+import React, { useState, useEffect } from "react";
+import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animals", "dog", ANIMALS);
-  const [breed, BreedDropdown] = useDropdown("Breed", "", breeds);
+  const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
 
+  // schedules function call to happen after component renders
+  // the 2nd argument to useEffect is a list of dependencies
+  // which it uses to determine if the callback should be called
+  useEffect(() => {
+    setBreeds([]);
+    setBreed("");
+
+    // call API
+    pet.breeds(animal).then(({ breeds }) => {
+      var breedStringsArr = breeds.map((breedObj) => breedObj.name);
+
+      setBreeds(breedStringsArr);
+    }, console.error);
+    // same as error => console.error(error)
+  }, [animal, setBreed, setBreeds]);
+
+  // All of this renders first
   return (
     <div className="search-params">
       <form>
