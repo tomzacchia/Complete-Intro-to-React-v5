@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+// parcel will automatically download dependencies that are missing
+// check package.json
+import { ANIMALS } from "@frontendmasters/pet";
 
 const SearchParams = () => {
   // [currentState, updater function state] = useState(defaultState)
