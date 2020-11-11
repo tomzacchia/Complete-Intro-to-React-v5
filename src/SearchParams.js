@@ -12,18 +12,20 @@ const SearchParams = () => {
   // schedules function call to happen after component renders
   // the 2nd argument to useEffect is a list of dependencies
   // which it uses to determine if the callback should be called
+  // this effect does not depend on breeds
   useEffect(() => {
     setBreeds([]);
     setBreed("");
 
     // call API
-    pet.breeds(animal).then(({ breeds }) => {
-      var breedStringsArr = breeds.map((breedObj) => breedObj.name);
+    pet.breeds(animal).then(({ breeds: apiBreeds }) => {
+      var breedStringsArr = apiBreeds.map((breedObj) => breedObj.name);
 
       setBreeds(breedStringsArr);
     }, console.error);
     // same as error => console.error(error)
   }, [animal, setBreed, setBreeds]);
+  // runs once pass in no dependencies
 
   // All of this renders first
   return (
