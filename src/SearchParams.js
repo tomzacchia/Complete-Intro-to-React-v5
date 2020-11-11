@@ -7,6 +7,7 @@ const SearchParams = () => {
   // [currentState, updater function state] = useState(defaultState)
   // useState returns an array where arr[0] = state
   const [location, setLocation] = useState("Seattle, WA");
+  const [animal, setAnimal] = useState("dog");
 
   // IMPORTANT: Order of hooks is important to functionality of hooks
   // therefore do not place them in conditionals
@@ -25,6 +26,21 @@ const SearchParams = () => {
             // typing triggers a re-render of SearchParams
             onChange={(event) => setLocation(event.target.value)}
           />
+        </label>
+        <label htmlFor="animal">
+          Animal
+          <select
+            name=""
+            id="animal"
+            value={animal}
+            onChange={(event) => setAnimal(event.target.value)}
+            onBlur={(event) => setAnimal(event.target.value)}
+          >
+            <option value="all"> ALL </option>
+            {ANIMALS.map((animal) => (
+              <option value={animal}>{animal}</option>
+            ))}
+          </select>
         </label>
         <button> Submit </button>
       </form>
