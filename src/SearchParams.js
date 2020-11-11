@@ -8,6 +8,8 @@ const SearchParams = () => {
   // useState returns an array where arr[0] = state
   const [location, setLocation] = useState("Seattle, WA");
   const [animal, setAnimal] = useState("dog");
+  const [breed, setBreed] = useState("");
+  const [breeds, setBreeds] = useState([]);
 
   // IMPORTANT: Order of hooks is important to functionality of hooks
   // therefore do not place them in conditionals
@@ -37,8 +39,33 @@ const SearchParams = () => {
             onBlur={(event) => setAnimal(event.target.value)}
           >
             <option value="all"> ALL </option>
+            {/* 
+              With key we notify react that if we re-order the option components
+              it can compare which items have changed, are added or are removed.
+              This helps with performance
+            */}
             {ANIMALS.map((animal) => (
-              <option value={animal}>{animal}</option>
+              <option value={animal} key={animal}>
+                {animal}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="breed">
+          Breed
+          <select
+            name=""
+            id="breed"
+            value={breed}
+            onChange={(event) => setBreed(event.target.value)}
+            onBlur={(event) => setBreed(event.target.value)}
+            disabled={!breeds.length}
+          >
+            <option value="all">All</option>
+            {breeds.map((breedString) => (
+              <option value={breedString} key={breedString}>
+                {breedString}
+              </option>
             ))}
           </select>
         </label>
