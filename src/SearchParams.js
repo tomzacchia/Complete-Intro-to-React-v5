@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import pet, { ANIMALS } from "@frontendmasters/pet";
 import { default as petsApi, ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
+import Results from "./Results";
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
@@ -16,8 +17,6 @@ const SearchParams = () => {
       breed,
       type: animal,
     });
-
-    console.log(animals);
 
     // if we receive no animals, set empty as a default
     setPets(animals || []);
@@ -59,6 +58,8 @@ const SearchParams = () => {
 
         <button> Submit </button>
       </form>
+
+      <Results pets={pets} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 // Parcel comes with babel
 
-export default function ({ name, animal, breed }) {
+export default function Pet({ name, animal, breed }) {
   return (
     // div gets transpiled to React.createElement so we need to import React
     <div>
