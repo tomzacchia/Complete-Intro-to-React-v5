@@ -1,13 +1,19 @@
 import React from "react";
 import { render } from "react-dom";
 import SearchParams from "./SearchParams";
-import { Router } from "@reach/router";
+import { Link, Router } from "@reach/router";
 import Details from "./Details";
 
 const App = () => {
   return (
     <div>
-      <h1 id="something-important"> Adopt Me! </h1>
+      <header>
+        {/* 
+          compiled to anchor tag, together Link will 
+          handle routing mechanisms 
+        */}
+        <Link to="/">Adopt Me!</Link>
+      </header>
       <Router>
         {/* 
           - Reach router only renders what matches "the most" 

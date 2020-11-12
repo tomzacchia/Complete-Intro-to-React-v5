@@ -1,6 +1,6 @@
 import React from "react";
 
-const Details = () => {
+const Details = (props) => {
   return <h1> Hi </h1>;
 };
 
