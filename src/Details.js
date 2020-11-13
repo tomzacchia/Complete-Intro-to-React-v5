@@ -2,13 +2,16 @@ import React from "react";
 import { default as petApi } from "@frontendmasters/pet";
 
 class Details extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      loading: true,
-    };
-  }
+  //   this.state = {
+  //     loading: true,
+  //   };
+  // }
+
+  // this is a style choice, instead of calling construtor and super
+  state = { loading: true };
 
   // only runs once during component creation
   componentDidMount() {
