@@ -1,5 +1,5 @@
 import React from "react";
-import { default as PetAPI } from "@frontendmasters/pet";
+import { default as petApi } from "@frontendmasters/pet";
 
 class Details extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class Details extends React.Component {
   componentDidMount() {
     // we have to use arrow functions in this case because
     // normal functions are envoked by something that is not Details
-    PetAPI.animal(this.props.id).then(({ animal }) => {
+    petApi.animal(this.props.id).then(({ animal }) => {
       // this.setState is a shallow merge deep levels are overwritten
       this.setState({
         name: animal.name,
@@ -29,7 +29,22 @@ class Details extends React.Component {
   }
 
   render() {
-    return <h1> Hi </h1>;
+    if (this.state.loading) {
+      return <h1> loading ...</h1>;
+    }
+
+    const { animal, breed, location, description, name } = this.state;
+
+    return (
+      <div className="details">
+        <div>
+          <h1> {animal}</h1>
+          <h2> {`${animal} - ${breed} - ${location}`}</h2>
+          <button> Adopt {name}</button>
+          <p> {description}</p>
+        </div>
+      </div>
+    );
   }
 }
 
