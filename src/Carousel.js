@@ -22,8 +22,8 @@ class Carousel extends React.Component {
 
   // the click event trigger handleIndexClick as a callback
   // if handlers are not arrow functions we lost this context
-  handleIndexClick = (event) => {
-    this.setState({ activeIndex: event.target.dataset.index });
+  handleIndexClick = (index) => {
+    this.setState({ activeIndex: parseInt(index) });
   };
 
   render() {
@@ -33,16 +33,18 @@ class Carousel extends React.Component {
       <div className="carousel">
         <img src={photos[activeIndex]} alt="animal" />
         <div className="carousel-smaller">
-          {photos.map((photo, index) => {
+          {photos.map((photo, index) => (
             <img
               key={photo}
               src={photo}
-              onClick={this.handleIndexClick}
+              onClick={() => {
+                this.handleIndexClick(index);
+              }}
               data-index={index}
               className={index === activeIndex ? "active" : ""}
               alt="animal thumbnail"
-            />;
-          })}
+            />
+          ))}
         </div>
       </div>
     );
