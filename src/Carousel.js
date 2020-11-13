@@ -8,7 +8,6 @@ class Carousel extends React.Component {
     activeIndex: 0,
   };
 
-  // we can perform transformations on incoming props
   static getDerivedStateFromProps({ media }) {
     let photos = ["http://placecorgi.com/600/600"];
 
@@ -16,12 +15,9 @@ class Carousel extends React.Component {
       photos = media.map(({ large }) => large);
     }
 
-    // return object is merged with state
     return { photos };
   }
 
-  // the click event trigger handleIndexClick as a callback
-  // if handlers are not arrow functions we lost this context
   handleIndexClick = (index) => {
     this.setState({ activeIndex: parseInt(index) });
   };

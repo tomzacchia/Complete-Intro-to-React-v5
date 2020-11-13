@@ -3,23 +3,10 @@ import { default as petApi } from "@frontendmasters/pet";
 import Carousel from "./Carousel";
 
 class Details extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     loading: true,
-  //   };
-  // }
-
-  // this is a style choice, instead of calling construtor and super
   state = { loading: true };
 
-  // only runs once during component creation
   componentDidMount() {
-    // we have to use arrow functions in this case because
-    // normal functions are envoked by something that is not Details
     petApi.animal(this.props.id).then(({ animal }) => {
-      // this.setState is a shallow merge deep levels are overwritten
       this.setState({
         name: animal.name,
         animal: animal.type,
