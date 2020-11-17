@@ -6,7 +6,8 @@ import Details from "./Details";
 import ThemeContext from "./ThemeContext";
 
 const App = () => {
-  // normally we destructure array
+  // normally we destructure array returned by useState
+  // however we want children to have access to "updater function"
   const themeHook = useState("darkblue");
 
   return (

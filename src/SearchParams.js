@@ -11,7 +11,9 @@ const SearchParams = () => {
   const [animal, AnimalDropdown] = useDropdown("Animals", "dog", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
   const [pets, setPets] = useState([]);
-  const [theme] = useContext(ThemeContext);
+
+  // only destructure hook value and not the update method
+  const [theme, setTheme] = useContext(ThemeContext);
 
   async function requestPets() {
     const { animals } = await petsApi.animals({
@@ -57,6 +59,23 @@ const SearchParams = () => {
 
         <AnimalDropdown />
         <BreedDropdown />
+
+        {/* 
+          We can't use dropdown hook because it has its own hook
+          and we want to use the hooks of the App component
+        */}
+        <label htmlFor="theme">
+          Theme
+          <select
+            value={theme}
+            onChange={(event) => setTheme(event.target.value)}
+            onBlur={(event) => setTheme(event.target.value)}
+          >
+            <option value="green"> Green </option>
+            <option value="darkblue"> Darkblue </option>
+            <option value="mediumorchid"> Medium Orchid </option>
+          </select>
+        </label>
 
         <button style={{ backgroundColor: theme }}> Submit </button>
       </form>

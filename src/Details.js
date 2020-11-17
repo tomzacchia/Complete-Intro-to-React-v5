@@ -2,6 +2,7 @@ import React from "react";
 import { default as petApi } from "@frontendmasters/pet";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundaries";
+import ThemeContext from "./ThemeContext";
 
 class Details extends React.Component {
   state = { loading: true };
@@ -36,7 +37,12 @@ class Details extends React.Component {
         <div>
           <h1> {name}</h1>
           <h2> {`${animal} - ${breed} - ${location}`}</h2>
-          <button> Adopt {name}</button>
+          <ThemeContext.Consumer>
+            {/* destructure the themeHook only to get value */}
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
           <p> {description}</p>
         </div>
       </div>
