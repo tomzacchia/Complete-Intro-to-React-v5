@@ -60,10 +60,6 @@ const SearchParams = () => {
         <AnimalDropdown />
         <BreedDropdown />
 
-        {/* 
-          We can't use dropdown hook because it has its own hook
-          and we want to use the hooks of the App component
-        */}
         <label htmlFor="theme">
           Theme
           <select

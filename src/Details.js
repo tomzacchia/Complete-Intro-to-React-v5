@@ -38,7 +38,6 @@ class Details extends React.Component {
           <h1> {name}</h1>
           <h2> {`${animal} - ${breed} - ${location}`}</h2>
           <ThemeContext.Consumer>
-            {/* destructure the themeHook only to get value */}
             {([theme]) => (
               <button style={{ backgroundColor: theme }}>Adopt {name}</button>
             )}
