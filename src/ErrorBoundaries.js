@@ -4,7 +4,6 @@ import React, { Component } from "react";
 
 import { Link } from "@reach/router";
 
-// catches any erros from its children
 class ErrorBoundary extends Component {
   state = { hasError: false };
 
