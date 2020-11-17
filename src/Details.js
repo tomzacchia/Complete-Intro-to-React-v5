@@ -1,11 +1,15 @@
 import React from "react";
 import { default as petApi } from "@frontendmasters/pet";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundaries";
 
 class Details extends React.Component {
   state = { loading: true };
 
   componentDidMount() {
+    // testing error boundary
+    // throw new Error("This is an error");
+
     petApi.animal(this.props.id).then(({ animal }) => {
       this.setState({
         name: animal.name,
@@ -40,4 +44,17 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+/* 
+  We can wrap the entire markup inside the return of render()
+  however ErrorBoundary only catches the errors of its children
+  therefore any errors in Details would be missed. that is why 
+  we use the HOC pattern
+*/
+export default function DetailsWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+      {/* Equivalent: <Details id={props.id} ... /> */}
+    </ErrorBoundary>
+  );
+}
